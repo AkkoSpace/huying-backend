@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * 更新请求
@@ -20,7 +20,7 @@ public class TransactionUpdateRequest implements Serializable {
     /**
      * 交易日期
      */
-    private Date transactionDate;
+    private LocalDate transactionDate;
 
     /**
      * 交易单号

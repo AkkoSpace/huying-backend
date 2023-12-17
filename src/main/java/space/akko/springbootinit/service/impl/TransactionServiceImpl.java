@@ -11,7 +11,7 @@ import space.akko.springbootinit.model.entity.Transaction;
 import space.akko.springbootinit.service.TransactionService;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * @author titan
@@ -29,7 +29,7 @@ public class TransactionServiceImpl extends ServiceImpl<TransactionMapper, Trans
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
 
-        Date transactionDate = transaction.getTransactionDate();
+        LocalDate transactionDate = transaction.getTransactionDate();
         String transactionId = transaction.getTransactionId();
         BigDecimal amount = transaction.getAmount();
         String description = transaction.getDescription();

@@ -2,12 +2,11 @@ package space.akko.springbootinit.model.dto.transaction;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.format.annotation.DateTimeFormat;
 import space.akko.springbootinit.common.PageRequest;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * 查询请求
@@ -24,8 +23,7 @@ public class TransactionQueryRequest extends PageRequest implements Serializable
     /**
      * 交易日期
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date transactionDate;
+    private LocalDate transactionDate;
 
     /**
      * 交易单号
