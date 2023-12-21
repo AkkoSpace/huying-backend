@@ -1,7 +1,5 @@
 package space.akko.springbootinit.controller;
 
-import cn.hutool.crypto.asymmetric.KeyType;
-import cn.hutool.crypto.asymmetric.RSA;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
@@ -9,7 +7,6 @@ import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
 import me.chanjar.weixin.mp.api.WxMpService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import space.akko.springbootinit.annotation.AuthCheck;
 import space.akko.springbootinit.common.BaseResponse;
@@ -31,9 +28,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-
-import static space.akko.springbootinit.constant.CommonConstant.SALT;
-import static space.akko.springbootinit.constant.Key.PRIVATE_KEY;
 
 /**
  * 用户接口
@@ -70,10 +64,7 @@ public class UserController {
         if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
             return null;
         }
-        RSA rsa = new RSA(PRIVATE_KEY, null);
-        String decryptUserPassword = rsa.decryptStr(userPassword, KeyType.PrivateKey);
-        String decryptCheckPassword = rsa.decryptStr(checkPassword, KeyType.PrivateKey);
-        long result = userService.userRegister(userAccount, decryptUserPassword, decryptCheckPassword);
+        long result = userService.userRegister(userAccount, userPassword, checkPassword);
         return ResultUtils.success(result);
     }
 
@@ -94,9 +85,7 @@ public class UserController {
         if (StringUtils.isAnyBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        RSA rsa = new RSA(PRIVATE_KEY, null);
-        String decryptUserPassword = rsa.decryptStr(userPassword, KeyType.PrivateKey);
-        String token = userService.userLogin(userAccount, decryptUserPassword, request);
+        String token = userService.userLogin(userAccount, userPassword, request);
         return ResultUtils.success(token);
     }
 
@@ -335,20 +324,15 @@ public class UserController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         String oldPassword = userUpdatePasswordRequest.getOldPassword();
-        RSA rsa = new RSA(PRIVATE_KEY, null);
-        String decryptOldPassword = rsa.decryptStr(oldPassword, KeyType.PrivateKey);
-        String encryptOldPassword = DigestUtils.md5DigestAsHex((SALT + decryptOldPassword).getBytes());
         User loginUser = userService.getLoginUser(request);
-        if (!loginUser.getUserPassword().equals(encryptOldPassword)) {
+        if (!loginUser.getUserPassword().equals(oldPassword)) {
             throw new BusinessException(ErrorCode.PASSWORD_ERROR);
         } else {
             String newPassword = userUpdatePasswordRequest.getNewPassword();
-            String decryptNewPassword = rsa.decryptStr(newPassword, KeyType.PrivateKey);
-            String encryptNewPassword = DigestUtils.md5DigestAsHex((SALT + decryptNewPassword).getBytes());
-            if (loginUser.getUserPassword().equals(encryptNewPassword)) {
+            if (loginUser.getUserPassword().equals(newPassword)) {
                 throw new BusinessException(ErrorCode.PARAMS_ERROR);
             }
-            loginUser.setUserPassword(encryptNewPassword);
+            loginUser.setUserPassword(newPassword);
             boolean result = userService.updateById(loginUser);
             ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
             return ResultUtils.success(true);
