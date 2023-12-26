@@ -131,10 +131,10 @@ public class TransactionController {
         String sortField = transactionQueryRequest.getSortField();
         String sortOrder = transactionQueryRequest.getSortOrder();
         String description = transactionQuery.getDescription();
-        String transactionId = transactionQuery.getTransactionId();
+        String transactionId = transactionQuery.getTransactionOrder();
         // description, transactionId 支持模糊搜索
         transactionQuery.setDescription(null);
-        transactionQuery.setTransactionId(null);
+        transactionQuery.setTransactionOrder(null);
         // 限制爬虫
         if (size > 50) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
