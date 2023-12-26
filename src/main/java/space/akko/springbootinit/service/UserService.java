@@ -2,7 +2,6 @@ package space.akko.springbootinit.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 import space.akko.springbootinit.model.dto.user.UserQueryRequest;
 import space.akko.springbootinit.model.entity.User;
 import space.akko.springbootinit.model.vo.LoginUserVO;
@@ -12,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * 用户服务
+ * @author Administrator
+ * @description 针对表【user(用户)】的数据库操作Service
+ * @createDate 2023-12-26 16:35:25
  */
 public interface UserService extends IService<User> {
 
@@ -37,15 +38,6 @@ public interface UserService extends IService<User> {
     String userLogin(String userAccount, String userPassword, HttpServletRequest request);
 
     String userAuth(HttpServletRequest request);
-
-    /**
-     * 用户登录（微信开放平台）
-     *
-     * @param wxOAuth2UserInfo 从微信获取的用户信息
-     * @param request
-     * @return 脱敏后的用户信息
-     */
-    LoginUserVO userLoginByMpOpen(WxOAuth2UserInfo wxOAuth2UserInfo, HttpServletRequest request);
 
     /**
      * 获取当前登录用户
