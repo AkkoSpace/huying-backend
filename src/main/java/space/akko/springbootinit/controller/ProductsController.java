@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Akko
  * @date 2023/12/27
  */
+@CrossOrigin(origins = {"http://localhost:5173", "https://hy.akko.space"}, maxAge = 3600)
 @RestController
 @RequestMapping("/products")
 @Slf4j

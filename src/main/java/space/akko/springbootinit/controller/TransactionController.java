@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 交易接口
  */
+@CrossOrigin(origins = {"http://localhost:5173", "https://hy.akko.space"}, maxAge = 3600)
 @RestController
 @RequestMapping("/transaction")
 @Slf4j

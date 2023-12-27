@@ -29,6 +29,7 @@ import java.util.List;
  *
  * @author Akko
  */
+@CrossOrigin(origins = {"http://localhost:5173", "https://hy.akko.space"}, maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 @Slf4j
