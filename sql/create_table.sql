@@ -52,7 +52,7 @@ create table products
         primary key,
     brand       varchar(255)                       null comment '品牌',
     productName varchar(255)                       not null comment '产品名称',
-    productDate date                               not null comment '生产日期',
+    productDate date                               null comment '生产日期',
     barCode     varchar(255)                       null comment '条形码',
     productSpec varchar(255)                       not null comment '产品规格',
     productUnit varchar(255)                       not null comment '产品单位',
