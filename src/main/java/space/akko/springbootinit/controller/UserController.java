@@ -10,7 +10,6 @@ import space.akko.springbootinit.common.BaseResponse;
 import space.akko.springbootinit.common.DeleteRequest;
 import space.akko.springbootinit.common.ErrorCode;
 import space.akko.springbootinit.common.ResultUtils;
-import space.akko.springbootinit.config.WxOpenConfig;
 import space.akko.springbootinit.constant.UserConstant;
 import space.akko.springbootinit.exception.BusinessException;
 import space.akko.springbootinit.exception.ThrowUtils;
@@ -37,9 +36,6 @@ public class UserController {
 
     @Resource
     private UserService userService;
-
-    @Resource
-    private WxOpenConfig wxOpenConfig;
 
     // region 登录相关
 
