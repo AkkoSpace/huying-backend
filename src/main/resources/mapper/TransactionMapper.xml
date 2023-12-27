@@ -5,22 +5,23 @@
 <mapper namespace="space.akko.springbootinit.mapper.TransactionMapper">
 
     <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.entity.Transaction">
-        <id property="id" column="id" jdbcType="INTEGER"/>
-        <result property="transactionDate" column="transactionDate" jdbcType="DATE"/>
-        <result property="transactionId" column="transactionId" jdbcType="VARCHAR"/>
-        <result property="amount" column="amount" jdbcType="DECIMAL"/>
-        <result property="description" column="description" jdbcType="VARCHAR"/>
-        <result property="userId" column="userId" jdbcType="BIGINT"/>
-        <result property="status" column="status" jdbcType="TINYINT"/>
-        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
-        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="transactionOrder" column="transactionOrder" jdbcType="VARCHAR"/>
+            <result property="transactionDate" column="transactionDate" jdbcType="DATE"/>
+            <result property="amount" column="amount" jdbcType="DECIMAL"/>
+            <result property="orderId" column="orderId" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="userId" column="userId" jdbcType="BIGINT"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,transactionDate,transactionId,
-        amount,description,userId,
-        status,createTime,updateTime,
-        isDelete
+        id,transactionOrder,transactionDate,
+        amount,orderId,description,
+        userId,status,createTime,
+        updateTime,isDelete
     </sql>
 </mapper>
