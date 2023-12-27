@@ -62,6 +62,9 @@ public enum ErrorCode {
     // 请求参数为空
     PARAMS_IS_NULL(10401, "请求参数为空"),
 
+    // 请求参数值超出允许的范围
+    PARAMS_OUT_OF_RANGE(10402, "请求参数值超出允许的范围"),
+
     // 请求数据不存在
     NOT_FOUND_ERROR(10404, "请求数据不存在"),
 

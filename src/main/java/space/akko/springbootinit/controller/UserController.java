@@ -160,7 +160,7 @@ public class UserController {
             boolean b = userService.removeById(deleteRequest.getId());
             return ResultUtils.success(b);
         } else {
-            throw new BusinessException(ErrorCode.FORBIDDEN_ERROR);
+            throw new BusinessException(ErrorCode.NO_PERMISSION_ERROR);
         }
     }
 
