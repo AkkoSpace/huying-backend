@@ -12,13 +12,11 @@ import java.time.LocalDate;
 import java.util.Date;
 
 /**
- * 交易
- *
- * @TableName transaction
+ * @TableName products_price
  */
-@TableName(value = "transaction")
+@TableName(value = "products_price")
 @Data
-public class Transaction implements Serializable {
+public class ProductsPrice implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**
@@ -27,33 +25,21 @@ public class Transaction implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
     /**
-     * 交易订单
+     * 产品 ID
      */
-    private String transactionOrder;
+    private Integer productId;
     /**
-     * 交易日期
+     * 价格
      */
-    private LocalDate transactionDate;
+    private BigDecimal price;
     /**
-     * 交易金额
+     * 价格日期
      */
-    private BigDecimal amount;
-    /**
-     * 订单 ID
-     */
-    private String orderId;
-    /**
-     * 描述
-     */
-    private String description;
+    private LocalDate priceDate;
     /**
      * 操作用户 ID
      */
     private Long userId;
-    /**
-     * 交易状态：0-未付款，1-已付款，2-已取消，3-已退款
-     */
-    private Integer status;
     /**
      * 创建时间
      */

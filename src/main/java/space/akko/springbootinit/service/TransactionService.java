@@ -6,7 +6,7 @@ import space.akko.springbootinit.model.entity.Transaction;
 /**
  * @author Administrator
  * @description 针对表【transaction(交易)】的数据库操作Service
- * @createDate 2023-12-26 17:21:47
+ * @createDate 2023-12-29 16:39:05
  */
 public interface TransactionService extends IService<Transaction> {
 

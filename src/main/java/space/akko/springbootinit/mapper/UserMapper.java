@@ -6,7 +6,7 @@ import space.akko.springbootinit.model.entity.User;
 /**
  * @author Administrator
  * @description 针对表【user(用户)】的数据库操作Mapper
- * @createDate 2023-12-26 16:35:25
+ * @createDate 2023-12-29 16:39:19
  * @Entity space.akko.springbootinit.model.entity.User
  */
 public interface UserMapper extends BaseMapper<User> {

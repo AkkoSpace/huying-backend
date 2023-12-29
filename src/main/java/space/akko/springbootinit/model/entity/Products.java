@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -26,33 +25,21 @@ public class Products implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
     /**
-     * 品牌
-     */
-    private String brand;
-    /**
      * 产品名称
      */
     private String productName;
     /**
-     * 生产日期
+     * 品牌 ID
      */
-    private Date productDate;
+    private Integer brandId;
     /**
-     * 条形码
+     * 产品规格 ID
      */
-    private String barCode;
+    private Integer productSpecId;
     /**
-     * 产品规格
+     * 产品单位 ID
      */
-    private String productSpec;
-    /**
-     * 产品单位
-     */
-    private String productUnit;
-    /**
-     * 产品单价
-     */
-    private BigDecimal unitPrice;
+    private Integer productUnitId;
     /**
      * 操作用户 ID
      */

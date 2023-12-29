@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Administrator
  * @description 针对表【user(用户)】的数据库操作Service
- * @createDate 2023-12-26 16:35:25
+ * @createDate 2023-12-29 16:39:19
  */
 public interface UserService extends IService<User> {
 

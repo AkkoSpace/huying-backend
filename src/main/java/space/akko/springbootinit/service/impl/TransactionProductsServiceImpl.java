@@ -9,7 +9,7 @@ import space.akko.springbootinit.service.TransactionProductsService;
 /**
  * @author Administrator
  * @description 针对表【transaction_products(订单产品)】的数据库操作Service实现
- * @createDate 2023-12-27 09:31:27
+ * @createDate 2023-12-29 16:39:13
  */
 @Service
 public class TransactionProductsServiceImpl extends ServiceImpl<TransactionProductsMapper, TransactionProducts>

@@ -2,12 +2,13 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="space.akko.springbootinit.mapper.TransactionProductsMapper">
+<mapper namespace="space.akko.springbootinit.mapper.ProductsDateMapper">
 
-    <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.entity.TransactionProducts">
+    <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.entity.ProductsDate">
         <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="productId" column="productId" jdbcType="INTEGER"/>
         <result property="transactionOrder" column="transactionOrder" jdbcType="VARCHAR"/>
-        <result property="products" column="products" jdbcType="OTHER"/>
+        <result property="productDate" column="productDate" jdbcType="DATE"/>
         <result property="userId" column="userId" jdbcType="BIGINT"/>
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
@@ -15,8 +16,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,transactionOrder,products,
-        userId,createTime,updateTime,
-        isDelete
+        id,productId,transactionOrder,
+        productDate,userId,createTime,
+        updateTime,isDelete
     </sql>
 </mapper>
