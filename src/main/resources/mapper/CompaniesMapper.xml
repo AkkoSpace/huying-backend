@@ -5,15 +5,15 @@
 <mapper namespace="space.akko.springbootinit.mapper.CompaniesMapper">
 
     <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.entity.Companies">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="companyName" column="companyName" jdbcType="VARCHAR"/>
-            <result property="companyAddress" column="companyAddress" jdbcType="VARCHAR"/>
-            <result property="contactPhone" column="contactPhone" jdbcType="VARCHAR"/>
-            <result property="contactEmail" column="contactEmail" jdbcType="VARCHAR"/>
-            <result property="userId" column="userId" jdbcType="BIGINT"/>
-            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
-            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="companyName" column="companyName" jdbcType="VARCHAR"/>
+        <result property="companyAddress" column="companyAddress" jdbcType="VARCHAR"/>
+        <result property="contactPhone" column="contactPhone" jdbcType="VARCHAR"/>
+        <result property="contactEmail" column="contactEmail" jdbcType="VARCHAR"/>
+        <result property="userId" column="userId" jdbcType="BIGINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">

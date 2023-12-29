@@ -33,5 +33,4 @@ public interface CommonConstant {
     String REFRESH_TOKEN_PREFIX = "refresh_token_";
 
 
-
 }

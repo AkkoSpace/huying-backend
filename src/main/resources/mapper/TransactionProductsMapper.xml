@@ -5,13 +5,13 @@
 <mapper namespace="space.akko.springbootinit.mapper.TransactionProductsMapper">
 
     <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.entity.TransactionProducts">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="transactionId" column="transactionId" jdbcType="VARCHAR"/>
-            <result property="products" column="products" jdbcType="OTHER"/>
-            <result property="userId" column="userId" jdbcType="BIGINT"/>
-            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
-            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="transactionId" column="transactionId" jdbcType="VARCHAR"/>
+        <result property="products" column="products" jdbcType="OTHER"/>
+        <result property="userId" column="userId" jdbcType="BIGINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
