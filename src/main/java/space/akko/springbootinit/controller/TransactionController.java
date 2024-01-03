@@ -17,9 +17,9 @@ import space.akko.springbootinit.model.dto.transaction.TransactionAddRequest;
 import space.akko.springbootinit.model.dto.transaction.TransactionQueryRequest;
 import space.akko.springbootinit.model.dto.transaction.TransactionUpdateRequest;
 import space.akko.springbootinit.model.entity.Transaction;
-import space.akko.springbootinit.model.entity.User;
+import space.akko.springbootinit.model.entity.SystemUser;
 import space.akko.springbootinit.service.TransactionService;
-import space.akko.springbootinit.service.UserService;
+import space.akko.springbootinit.service.SystemUserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 交易接口
  */
+@CrossOrigin(origins = {"http://localhost:5173", "https://hy.akko.space"}, maxAge = 3600)
 @RestController
 @RequestMapping("/transaction")
 @Slf4j
@@ -36,7 +37,7 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @Resource
-    private UserService userService;
+    private SystemUserService userService;
 
     // region 增删改查
 
@@ -55,7 +56,7 @@ public class TransactionController {
         Transaction transaction = new Transaction();
         BeanUtils.copyProperties(transactionAddRequest, transaction);
         transactionService.validTransaction(transaction, true);
-        User loginUser = userService.getLoginUser(request);
+        SystemUser loginUser = userService.getLoginUser(request);
         transaction.setUserId(loginUser.getId());
         boolean result = transactionService.save(transaction);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
@@ -75,7 +76,7 @@ public class TransactionController {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userService.getLoginUser(request);
+        SystemUser user = userService.getLoginUser(request);
         long id = deleteRequest.getId();
         // 判断是否存在
         Transaction oldTransaction = transactionService.getById(id);
@@ -165,100 +166,5 @@ public class TransactionController {
         }
         return ResultUtils.success(transaction);
     }
-
-    /**
-     * 分页获取列表（封装类）
-     *
-     * @param transactionQueryRequest
-     * @param request
-     * @return
-     */
-//    @PostMapping("/list/page/vo")
-//    public BaseResponse<Page<TransactionVO>> listTransactionVOByPage(@RequestBody TransactionQueryRequest transactionQueryRequest,
-//            HttpServletRequest request) {
-//        long current = transactionQueryRequest.getCurrent();
-//        long size = transactionQueryRequest.getPageSize();
-//        // 限制爬虫
-//        ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
-//        Page<Transaction> transactionPage = transactionService.page(new Page<>(current, size),
-//                transactionService.getQueryWrapper(transactionQueryRequest));
-//        return ResultUtils.success(transactionService.getTransactionVOPage(transactionPage, request));
-//    }
-
-    /**
-     * 分页获取当前用户创建的资源列表
-     *
-     * @param transactionQueryRequest
-     * @param request
-     * @return
-     */
-//    @PostMapping("/my/list/page/vo")
-//    public BaseResponse<Page<TransactionVO>> listMyTransactionVOByPage(@RequestBody TransactionQueryRequest transactionQueryRequest,
-//            HttpServletRequest request) {
-//        if (transactionQueryRequest == null) {
-//            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-//        }
-//        User loginUser = userService.getLoginUser(request);
-//        transactionQueryRequest.setUserId(loginUser.getId());
-//        long current = transactionQueryRequest.getCurrent();
-//        long size = transactionQueryRequest.getPageSize();
-//        // 限制爬虫
-//        ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
-//        Page<Transaction> transactionPage = transactionService.page(new Page<>(current, size),
-//                transactionService.getQueryWrapper(transactionQueryRequest));
-//        return ResultUtils.success(transactionService.getTransactionVOPage(transactionPage, request));
-//    }
-
-    // endregion
-
-    /**
-     * 分页搜索（从 ES 查询，封装类）
-     *
-     * @param transactionQueryRequest
-     * @param request
-     * @return
-     */
-//    @PostMapping("/search/page/vo")
-//    public BaseResponse<Page<TransactionVO>> searchTransactionVOByPage(@RequestBody TransactionQueryRequest transactionQueryRequest,
-//            HttpServletRequest request) {
-//        long size = transactionQueryRequest.getPageSize();
-//        // 限制爬虫
-//        ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
-//        Page<Transaction> transactionPage = transactionService.searchFromEs(transactionQueryRequest);
-//        return ResultUtils.success(transactionService.getTransactionVOPage(transactionPage, request));
-//    }
-
-    /**
-     * 编辑（用户）
-     *
-     * @param transactionEditRequest
-     * @param request
-     * @return
-     */
-//    @PostMapping("/edit")
-//    public BaseResponse<Boolean> editTransaction(@RequestBody TransactionEditRequest transactionEditRequest, HttpServletRequest request) {
-//        if (transactionEditRequest == null || transactionEditRequest.getId() <= 0) {
-//            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-//        }
-//        Transaction transaction = new Transaction();
-//        BeanUtils.copyProperties(transactionEditRequest, transaction);
-//        List<String> tags = transactionEditRequest.getTags();
-//        if (tags != null) {
-//            transaction.setTags(GSON.toJson(tags));
-//        }
-//        // 参数校验
-//        transactionService.validTransaction(transaction, false);
-//        User loginUser = userService.getLoginUser(request);
-//        long id = transactionEditRequest.getId();
-//        // 判断是否存在
-//        Transaction oldTransaction = transactionService.getById(id);
-//        ThrowUtils.throwIf(oldTransaction == null, ErrorCode.NOT_FOUND_ERROR);
-//        // 仅本人或管理员可编辑
-//        if (!oldTransaction.getUserId().equals(loginUser.getId()) && !userService.isAdmin(loginUser)) {
-//            throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
-//        }
-//        boolean result = transactionService.updateById(transaction);
-//        return ResultUtils.success(result);
-//    }
 
 }

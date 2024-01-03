@@ -14,10 +14,10 @@ import space.akko.springbootinit.constant.UserConstant;
 import space.akko.springbootinit.exception.BusinessException;
 import space.akko.springbootinit.exception.ThrowUtils;
 import space.akko.springbootinit.model.dto.user.*;
-import space.akko.springbootinit.model.entity.User;
+import space.akko.springbootinit.model.entity.SystemUser;
 import space.akko.springbootinit.model.vo.LoginUserVO;
 import space.akko.springbootinit.model.vo.UserVO;
-import space.akko.springbootinit.service.UserService;
+import space.akko.springbootinit.service.SystemUserService;
 import space.akko.springbootinit.utils.JwtUtils;
 
 import javax.annotation.Resource;
@@ -29,13 +29,14 @@ import java.util.List;
  *
  * @author Akko
  */
+@CrossOrigin(origins = {"http://localhost:5173", "https://hy.akko.space"}, maxAge = 3600)
 @RestController
 @RequestMapping("/user")
 @Slf4j
 public class UserController {
 
     @Resource
-    private UserService userService;
+    private SystemUserService userService;
 
     // region 登录相关
 
@@ -116,7 +117,7 @@ public class UserController {
      */
     @GetMapping("/info")
     public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
-        User user = userService.getLoginUser(request);
+        SystemUser user = userService.getLoginUser(request);
         return ResultUtils.success(userService.getLoginUserVO(user));
     }
 
@@ -137,7 +138,7 @@ public class UserController {
         if (userAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = new User();
+        SystemUser user = new SystemUser();
         BeanUtils.copyProperties(userAddRequest, user);
         boolean result = userService.save(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
@@ -160,7 +161,7 @@ public class UserController {
             boolean b = userService.removeById(deleteRequest.getId());
             return ResultUtils.success(b);
         } else {
-            throw new BusinessException(ErrorCode.FORBIDDEN_ERROR);
+            throw new BusinessException(ErrorCode.NO_PERMISSION_ERROR);
         }
     }
 
@@ -177,7 +178,7 @@ public class UserController {
         if (userUpdateRequest == null || userUpdateRequest.getId() == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = new User();
+        SystemUser user = new SystemUser();
         BeanUtils.copyProperties(userUpdateRequest, user);
         boolean result = userService.updateById(user);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
@@ -193,11 +194,11 @@ public class UserController {
      */
     @GetMapping("/get")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<User> getUserById(long id, HttpServletRequest request) {
+    public BaseResponse<SystemUser> getUserById(long id, HttpServletRequest request) {
         if (id <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userService.getById(id);
+        SystemUser user = userService.getById(id);
         ThrowUtils.throwIf(user == null, ErrorCode.NOT_FOUND_ERROR);
         return ResultUtils.success(user);
     }
@@ -211,8 +212,8 @@ public class UserController {
      */
     @GetMapping("/get/vo")
     public BaseResponse<UserVO> getUserVOById(long id, HttpServletRequest request) {
-        BaseResponse<User> response = getUserById(id, request);
-        User user = response.getData();
+        BaseResponse<SystemUser> response = getUserById(id, request);
+        SystemUser user = response.getData();
         return ResultUtils.success(userService.getUserVO(user));
     }
 
@@ -225,10 +226,10 @@ public class UserController {
      */
     @PostMapping("/list/page")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Page<User>> listUserByPage(@RequestBody UserQueryRequest userQueryRequest, HttpServletRequest request) {
+    public BaseResponse<Page<SystemUser>> listUserByPage(@RequestBody UserQueryRequest userQueryRequest, HttpServletRequest request) {
         long current = userQueryRequest.getCurrent();
         long size = userQueryRequest.getPageSize();
-        Page<User> userPage = userService.page(new Page<>(current, size), userService.getQueryWrapper(userQueryRequest));
+        Page<SystemUser> userPage = userService.page(new Page<>(current, size), userService.getQueryWrapper(userQueryRequest));
         return ResultUtils.success(userPage);
     }
 
@@ -248,7 +249,7 @@ public class UserController {
         long size = userQueryRequest.getPageSize();
         // 限制爬虫
         ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
-        Page<User> userPage = userService.page(new Page<>(current, size), userService.getQueryWrapper(userQueryRequest));
+        Page<SystemUser> userPage = userService.page(new Page<>(current, size), userService.getQueryWrapper(userQueryRequest));
         Page<UserVO> userVOPage = new Page<>(current, size, userPage.getTotal());
         List<UserVO> userVO = userService.getUserVO(userPage.getRecords());
         userVOPage.setRecords(userVO);
@@ -269,8 +270,8 @@ public class UserController {
         if (userUpdateInfoRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User loginUser = userService.getLoginUser(request);
-        User user = new User();
+        SystemUser loginUser = userService.getLoginUser(request);
+        SystemUser user = new SystemUser();
         BeanUtils.copyProperties(userUpdateInfoRequest, user);
         user.setId(loginUser.getId());
         boolean result = userService.updateById(user);
@@ -291,7 +292,7 @@ public class UserController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         String oldPassword = userUpdatePasswordRequest.getOldPassword();
-        User loginUser = userService.getLoginUser(request);
+        SystemUser loginUser = userService.getLoginUser(request);
         if (!loginUser.getUserPassword().equals(oldPassword)) {
             throw new BusinessException(ErrorCode.PASSWORD_ERROR);
         } else {

@@ -1,13 +1,5 @@
 package space.akko.springbootinit.aop;
 
-import space.akko.springbootinit.annotation.AuthCheck;
-import space.akko.springbootinit.common.ErrorCode;
-import space.akko.springbootinit.exception.BusinessException;
-import space.akko.springbootinit.model.entity.User;
-import space.akko.springbootinit.model.enums.UserRoleEnum;
-import space.akko.springbootinit.service.UserService;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -16,6 +8,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import space.akko.springbootinit.annotation.AuthCheck;
+import space.akko.springbootinit.common.ErrorCode;
+import space.akko.springbootinit.exception.BusinessException;
+import space.akko.springbootinit.model.entity.SystemUser;
+import space.akko.springbootinit.model.enums.UserRoleEnum;
+import space.akko.springbootinit.service.SystemUserService;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 权限校验 AOP
@@ -25,7 +26,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class AuthInterceptor {
 
     @Resource
-    private UserService userService;
+    private SystemUserService userService;
 
     /**
      * 执行拦截
@@ -40,7 +41,7 @@ public class AuthInterceptor {
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
         // 当前登录用户
-        User loginUser = userService.getLoginUser(request);
+        SystemUser loginUser = userService.getLoginUser(request);
         // 必须有该权限才通过
         if (StringUtils.isNotBlank(mustRole)) {
             UserRoleEnum mustUserRoleEnum = UserRoleEnum.getEnumByValue(mustRole);

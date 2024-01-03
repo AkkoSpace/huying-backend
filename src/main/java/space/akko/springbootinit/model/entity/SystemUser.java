@@ -1,19 +1,22 @@
 package space.akko.springbootinit.model.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户
+ * 用户表
  *
- * @TableName user
+ * @TableName system_user
  */
-@TableName(value = "user")
+@TableName(value = "system_user")
 @Data
-public class User implements Serializable {
+public class SystemUser implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**
@@ -30,23 +33,23 @@ public class User implements Serializable {
      */
     private String userPassword;
     /**
-     * UID
-     */
-    private String uid;
-    /**
-     * 用户昵称
+     * 姓名
      */
     private String userName;
     /**
-     * 用户头像
+     * 电话
+     */
+    private String userPhone;
+    /**
+     * 头像
      */
     private String userAvatar;
     /**
-     * 用户简介
+     * 简介
      */
     private String userProfile;
     /**
-     * 用户角色：user/admin/ban
+     * 角色：user/admin/ban
      */
     private String userRole;
     /**
@@ -60,6 +63,5 @@ public class User implements Serializable {
     /**
      * 是否删除
      */
-    @TableLogic
     private Integer isDelete;
 }

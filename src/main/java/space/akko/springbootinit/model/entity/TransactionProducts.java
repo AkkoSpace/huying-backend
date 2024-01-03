@@ -27,7 +27,7 @@ public class TransactionProducts implements Serializable {
     /**
      * 交易 ID
      */
-    private String transactionId;
+    private String transactionOrder;
     /**
      * 订单产品
      */

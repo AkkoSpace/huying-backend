@@ -10,15 +10,13 @@ import java.io.Serializable;
 @Data
 public class UserUpdatePasswordRequest implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     /**
      * 用户旧密码
      */
     private String oldPassword;
-
     /**
      * 用户新密码
      */
     private String newPassword;
-
-    private static final long serialVersionUID = 1L;
 }

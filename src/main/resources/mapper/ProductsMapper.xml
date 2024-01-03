@@ -5,24 +5,20 @@
 <mapper namespace="space.akko.springbootinit.mapper.ProductsMapper">
 
     <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.entity.Products">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="brand" column="brand" jdbcType="VARCHAR"/>
-            <result property="productName" column="productName" jdbcType="VARCHAR"/>
-            <result property="productDate" column="productDate" jdbcType="DATE"/>
-            <result property="barCode" column="barCode" jdbcType="VARCHAR"/>
-            <result property="productSpec" column="productSpec" jdbcType="VARCHAR"/>
-            <result property="productUnit" column="productUnit" jdbcType="VARCHAR"/>
-            <result property="unitPrice" column="unitPrice" jdbcType="DECIMAL"/>
-            <result property="userId" column="userId" jdbcType="BIGINT"/>
-            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
-            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="productName" column="productName" jdbcType="VARCHAR"/>
+        <result property="brandId" column="brandId" jdbcType="INTEGER"/>
+        <result property="productSpecId" column="productSpecId" jdbcType="INTEGER"/>
+        <result property="productUnitId" column="productUnitId" jdbcType="INTEGER"/>
+        <result property="userId" column="userId" jdbcType="BIGINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,brand,productName,
-        productDate,barCode,productSpec,
-        productUnit,unitPrice,userId,
+        id,productName,brandId,
+        productSpecId,productUnitId,userId,
         createTime,updateTime,isDelete
     </sql>
 </mapper>

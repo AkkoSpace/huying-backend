@@ -25,6 +25,10 @@ public class Companies implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
     /**
+     * 公司 ID
+     */
+    private String companyId;
+    /**
      * 公司名称
      */
     private String companyName;
