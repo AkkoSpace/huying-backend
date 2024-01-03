@@ -17,9 +17,9 @@ import space.akko.springbootinit.model.dto.products.ProductsAddRequest;
 import space.akko.springbootinit.model.dto.products.ProductsQueryRequest;
 import space.akko.springbootinit.model.dto.products.ProductsUpdateRequest;
 import space.akko.springbootinit.model.entity.Products;
-import space.akko.springbootinit.model.entity.User;
+import space.akko.springbootinit.model.entity.SystemUser;
 import space.akko.springbootinit.service.ProductsService;
-import space.akko.springbootinit.service.UserService;
+import space.akko.springbootinit.service.SystemUserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +40,7 @@ public class ProductsController {
     private ProductsService productsService;
 
     @Resource
-    private UserService userService;
+    private SystemUserService userService;
 
     // 增删改查
 
@@ -59,7 +59,7 @@ public class ProductsController {
         Products products = new Products();
         BeanUtils.copyProperties(productsAddRequest, products);
         productsService.validProducts(products, true);
-        User loginUser = userService.getLoginUser(request);
+        SystemUser loginUser = userService.getLoginUser(request);
         products.setUserId(loginUser.getId());
         boolean result = productsService.save(products);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
@@ -79,7 +79,7 @@ public class ProductsController {
         if (deleteRequest == null || deleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = userService.getLoginUser(request);
+        SystemUser user = userService.getLoginUser(request);
         long id = deleteRequest.getId();
         // 判断是否存在
         Products oldProducts = productsService.getById(id);
@@ -123,34 +123,34 @@ public class ProductsController {
      * @param request
      * @return
      */
-    @GetMapping("/list/page")
-    public BaseResponse<Page<Products>> listProductsByPage(ProductsQueryRequest productsQueryRequest, HttpServletRequest request) {
-        if (productsQueryRequest == null) {
-            throw new BusinessException(ErrorCode.PARAMS_IS_NULL);
-        }
-        Products productsQuery = new Products();
-        BeanUtils.copyProperties(productsQueryRequest, productsQuery);
-        long current = productsQueryRequest.getCurrent();
-        long size = productsQueryRequest.getPageSize();
-        String sortField = productsQueryRequest.getSortField();
-        String sortOrder = productsQueryRequest.getSortOrder();
-        String brand = productsQuery.getBrand();
-        String productName = productsQuery.getProductName();
-        // brand, productName 支持模糊搜索
-        productsQuery.setBrand(null);
-        productsQuery.setProductName(null);
-        // 限制爬虫
-        if (size > 50) {
-            throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE);
-        }
-        QueryWrapper<Products> queryWrapper = new QueryWrapper<>(productsQuery);
-        queryWrapper.like(StringUtils.isNotBlank(brand), "brand", brand);
-        queryWrapper.like(StringUtils.isNotBlank(productName), "productName", productName);
-        queryWrapper.orderBy(StringUtils.isNotBlank(sortField),
-                sortOrder.equals(CommonConstant.SORT_ORDER_ASC), sortField);
-        Page<Products> productsPage = productsService.page(new Page<>(current, size), queryWrapper);
-        return ResultUtils.success(productsPage);
-    }
+//    @GetMapping("/list/page")
+//    public BaseResponse<Page<Products>> listProductsByPage(ProductsQueryRequest productsQueryRequest, HttpServletRequest request) {
+//        if (productsQueryRequest == null) {
+//            throw new BusinessException(ErrorCode.PARAMS_IS_NULL);
+//        }
+//        Products productsQuery = new Products();
+//        BeanUtils.copyProperties(productsQueryRequest, productsQuery);
+//        long current = productsQueryRequest.getCurrent();
+//        long size = productsQueryRequest.getPageSize();
+//        String sortField = productsQueryRequest.getSortField();
+//        String sortOrder = productsQueryRequest.getSortOrder();
+//        String brand = productsQuery.getBrand();
+//        String productName = productsQuery.getProductName();
+//        // brand, productName 支持模糊搜索
+//        productsQuery.setBrand(null);
+//        productsQuery.setProductName(null);
+//        // 限制爬虫
+//        if (size > 50) {
+//            throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE);
+//        }
+//        QueryWrapper<Products> queryWrapper = new QueryWrapper<>(productsQuery);
+//        queryWrapper.like(StringUtils.isNotBlank(brand), "brand", brand);
+//        queryWrapper.like(StringUtils.isNotBlank(productName), "productName", productName);
+//        queryWrapper.orderBy(StringUtils.isNotBlank(sortField),
+//                sortOrder.equals(CommonConstant.SORT_ORDER_ASC), sortField);
+//        Page<Products> productsPage = productsService.page(new Page<>(current, size), queryWrapper);
+//        return ResultUtils.success(productsPage);
+//    }
 
     /**
      * 根据 id 获取

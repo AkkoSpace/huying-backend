@@ -51,7 +51,7 @@ public class ProductsServiceImpl extends ServiceImpl<ProductsMapper, Products>
         } else {
             // 修改时，参数不能同时为空
             if (productName == null && brandId == null && productSpecId == null && productUnitId == null) {
-                throw new BusinessException(ErrorCode.PARAMS_IS_NULL,ErrorCode.PARAMS_IS_NULL.getMessage());
+                throw new BusinessException(ErrorCode.PARAMS_IS_NULL, ErrorCode.PARAMS_IS_NULL.getMessage());
             }
         }
     }

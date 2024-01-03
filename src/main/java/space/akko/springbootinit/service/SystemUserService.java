@@ -3,7 +3,7 @@ package space.akko.springbootinit.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import space.akko.springbootinit.model.dto.user.UserQueryRequest;
-import space.akko.springbootinit.model.entity.User;
+import space.akko.springbootinit.model.entity.SystemUser;
 import space.akko.springbootinit.model.vo.LoginUserVO;
 import space.akko.springbootinit.model.vo.UserVO;
 
@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @author Administrator
- * @description 针对表【user(用户)】的数据库操作Service
- * @createDate 2023-12-29 16:39:19
+ * @author Akko
+ * @description 针对表【system_user(用户表)】的数据库操作Service
+ * @createDate 2024-01-03 22:28:39
  */
-public interface UserService extends IService<User> {
+public interface SystemUserService extends IService<SystemUser> {
 
     /**
      * 用户注册
@@ -45,7 +45,7 @@ public interface UserService extends IService<User> {
      * @param request
      * @return
      */
-    User getLoginUser(HttpServletRequest request);
+    SystemUser getLoginUser(HttpServletRequest request);
 
     /**
      * 获取当前登录用户（允许未登录）
@@ -53,7 +53,7 @@ public interface UserService extends IService<User> {
      * @param request
      * @return
      */
-    User getLoginUserPermitNull(HttpServletRequest request);
+    SystemUser getLoginUserPermitNull(HttpServletRequest request);
 
     /**
      * 是否为管理员
@@ -69,7 +69,7 @@ public interface UserService extends IService<User> {
      * @param user
      * @return
      */
-    boolean isAdmin(User user);
+    boolean isAdmin(SystemUser user);
 
     /**
      * 用户注销
@@ -84,7 +84,7 @@ public interface UserService extends IService<User> {
      *
      * @return
      */
-    LoginUserVO getLoginUserVO(User user);
+    LoginUserVO getLoginUserVO(SystemUser user);
 
     /**
      * 获取脱敏的用户信息
@@ -92,7 +92,7 @@ public interface UserService extends IService<User> {
      * @param user
      * @return
      */
-    UserVO getUserVO(User user);
+    UserVO getUserVO(SystemUser user);
 
     /**
      * 获取脱敏的用户信息
@@ -100,7 +100,7 @@ public interface UserService extends IService<User> {
      * @param userList
      * @return
      */
-    List<UserVO> getUserVO(List<User> userList);
+    List<UserVO> getUserVO(List<SystemUser> userList);
 
     /**
      * 获取查询条件
@@ -108,6 +108,6 @@ public interface UserService extends IService<User> {
      * @param userQueryRequest
      * @return
      */
-    QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
+    QueryWrapper<SystemUser> getQueryWrapper(UserQueryRequest userQueryRequest);
 
 }
