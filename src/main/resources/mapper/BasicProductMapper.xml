@@ -5,19 +5,19 @@
 <mapper namespace="space.akko.springbootinit.mapper.BasicProductMapper">
 
     <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.domain.BasicProduct">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="brandId" column="brandId" jdbcType="TINYINT"/>
-            <result property="categoryId" column="categoryId" jdbcType="TINYINT"/>
-            <result property="productName" column="productName" jdbcType="VARCHAR"/>
-            <result property="barCode" column="barCode" jdbcType="VARCHAR"/>
-            <result property="productSpec" column="productSpec" jdbcType="VARCHAR"/>
-            <result property="productUnit" column="productUnit" jdbcType="CHAR"/>
-            <result property="purchasePrice" column="purchasePrice" jdbcType="DECIMAL"/>
-            <result property="standardPrice" column="standardPrice" jdbcType="DECIMAL"/>
-            <result property="userId" column="userId" jdbcType="BIGINT"/>
-            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
-            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="brandId" column="brandId" jdbcType="TINYINT"/>
+        <result property="categoryId" column="categoryId" jdbcType="TINYINT"/>
+        <result property="productName" column="productName" jdbcType="VARCHAR"/>
+        <result property="barCode" column="barCode" jdbcType="VARCHAR"/>
+        <result property="productSpec" column="productSpec" jdbcType="VARCHAR"/>
+        <result property="productUnit" column="productUnit" jdbcType="CHAR"/>
+        <result property="purchasePrice" column="purchasePrice" jdbcType="DECIMAL"/>
+        <result property="standardPrice" column="standardPrice" jdbcType="DECIMAL"/>
+        <result property="userId" column="userId" jdbcType="BIGINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">

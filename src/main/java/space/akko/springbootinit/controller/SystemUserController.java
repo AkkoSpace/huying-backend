@@ -13,8 +13,8 @@ import space.akko.springbootinit.common.ResultUtils;
 import space.akko.springbootinit.constant.UserConstant;
 import space.akko.springbootinit.exception.BusinessException;
 import space.akko.springbootinit.exception.ThrowUtils;
-import space.akko.springbootinit.model.dto.*;
 import space.akko.springbootinit.model.domain.SystemUser;
+import space.akko.springbootinit.model.dto.*;
 import space.akko.springbootinit.model.query.UserQueryRequest;
 import space.akko.springbootinit.model.vo.LoginUserVO;
 import space.akko.springbootinit.model.vo.UserVO;
@@ -48,7 +48,7 @@ public class SystemUserController {
      * @return 用户 id
      */
     @PostMapping("/register")
-    public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
+    public BaseResponse<Long> userRegister(@RequestBody SystemUserRegisterRequest userRegisterRequest) {
         if (userRegisterRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -70,7 +70,7 @@ public class SystemUserController {
      * @return token
      */
     @PostMapping("/login")
-    public BaseResponse<String> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
+    public BaseResponse<String> userLogin(@RequestBody SystemUserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -135,7 +135,7 @@ public class SystemUserController {
      */
     @PostMapping("/add")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Long> addUser(@RequestBody UserAddRequest userAddRequest, HttpServletRequest request) {
+    public BaseResponse<Long> addUser(@RequestBody SystemUserAddRequest userAddRequest, HttpServletRequest request) {
         if (userAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -175,7 +175,7 @@ public class SystemUserController {
      */
     @PostMapping("/update")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Boolean> updateUser(@RequestBody UserUpdateRequest userUpdateRequest, HttpServletRequest request) {
+    public BaseResponse<Boolean> updateUser(@RequestBody SystemUserUpdateRequest userUpdateRequest, HttpServletRequest request) {
         if (userUpdateRequest == null || userUpdateRequest.getId() == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -267,7 +267,7 @@ public class SystemUserController {
      * @return 是否成功
      */
     @PostMapping("/update/info")
-    public BaseResponse<LoginUserVO> updateMyUser(@RequestBody UserUpdateInfoRequest userUpdateInfoRequest, HttpServletRequest request) {
+    public BaseResponse<LoginUserVO> updateMyUser(@RequestBody SystemUserUpdateInfoRequest userUpdateInfoRequest, HttpServletRequest request) {
         if (userUpdateInfoRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -288,7 +288,7 @@ public class SystemUserController {
      * @return 是否成功
      */
     @PostMapping("/update/password")
-    public BaseResponse<Boolean> updateMyPassword(@RequestBody UserUpdatePasswordRequest userUpdatePasswordRequest, HttpServletRequest request) {
+    public BaseResponse<Boolean> updateMyPassword(@RequestBody SystemUserUpdatePasswordRequest userUpdatePasswordRequest, HttpServletRequest request) {
         if (userUpdatePasswordRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }

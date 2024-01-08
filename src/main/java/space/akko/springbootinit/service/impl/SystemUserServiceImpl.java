@@ -11,12 +11,12 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import space.akko.springbootinit.common.ErrorCode;
+import space.akko.springbootinit.common.UserRoleEnum;
 import space.akko.springbootinit.constant.CommonConstant;
 import space.akko.springbootinit.exception.BusinessException;
 import space.akko.springbootinit.mapper.SystemUserMapper;
-import space.akko.springbootinit.model.query.UserQueryRequest;
 import space.akko.springbootinit.model.domain.SystemUser;
-import space.akko.springbootinit.common.UserRoleEnum;
+import space.akko.springbootinit.model.query.UserQueryRequest;
 import space.akko.springbootinit.model.vo.LoginUserVO;
 import space.akko.springbootinit.model.vo.UserVO;
 import space.akko.springbootinit.service.SystemUserService;
@@ -265,8 +265,6 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "请求参数为空");
         }
         Long id = userQueryRequest.getId();
-        String unionId = userQueryRequest.getUnionId();
-        String mpOpenId = userQueryRequest.getMpOpenId();
         String userName = userQueryRequest.getUserName();
         String userProfile = userQueryRequest.getUserProfile();
         String userRole = userQueryRequest.getUserRole();
@@ -274,8 +272,6 @@ public class SystemUserServiceImpl extends ServiceImpl<SystemUserMapper, SystemU
         String sortOrder = userQueryRequest.getSortOrder();
         QueryWrapper<SystemUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(id != null, "id", id);
-        queryWrapper.eq(StringUtils.isNotBlank(unionId), "unionId", unionId);
-        queryWrapper.eq(StringUtils.isNotBlank(mpOpenId), "mpOpenId", mpOpenId);
         queryWrapper.eq(StringUtils.isNotBlank(userRole), "userRole", userRole);
         queryWrapper.like(StringUtils.isNotBlank(userProfile), "userProfile", userProfile);
         queryWrapper.like(StringUtils.isNotBlank(userName), "userName", userName);

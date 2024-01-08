@@ -10,9 +10,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import space.akko.springbootinit.annotation.AuthCheck;
 import space.akko.springbootinit.common.ErrorCode;
+import space.akko.springbootinit.common.UserRoleEnum;
 import space.akko.springbootinit.exception.BusinessException;
 import space.akko.springbootinit.model.domain.SystemUser;
-import space.akko.springbootinit.common.UserRoleEnum;
 import space.akko.springbootinit.service.SystemUserService;
 
 import javax.annotation.Resource;

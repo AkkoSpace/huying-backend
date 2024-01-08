@@ -5,18 +5,18 @@
 <mapper namespace="space.akko.springbootinit.mapper.PurchaseOrderMapper">
 
     <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.domain.PurchaseOrder">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="orderId" column="orderId" jdbcType="VARCHAR"/>
-            <result property="supplierId" column="supplierId" jdbcType="INTEGER"/>
-            <result property="warehouseId" column="warehouseId" jdbcType="INTEGER"/>
-            <result property="orderStatus" column="orderStatus" jdbcType="TINYINT"/>
-            <result property="orderDate" column="orderDate" jdbcType="DATE"/>
-            <result property="orderTotal" column="orderTotal" jdbcType="DECIMAL"/>
-            <result property="orderRemark" column="orderRemark" jdbcType="VARCHAR"/>
-            <result property="userId" column="userId" jdbcType="BIGINT"/>
-            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
-            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderId" column="orderId" jdbcType="VARCHAR"/>
+        <result property="supplierId" column="supplierId" jdbcType="INTEGER"/>
+        <result property="warehouseId" column="warehouseId" jdbcType="INTEGER"/>
+        <result property="orderStatus" column="orderStatus" jdbcType="TINYINT"/>
+        <result property="orderDate" column="orderDate" jdbcType="DATE"/>
+        <result property="orderTotal" column="orderTotal" jdbcType="DECIMAL"/>
+        <result property="orderRemark" column="orderRemark" jdbcType="VARCHAR"/>
+        <result property="userId" column="userId" jdbcType="BIGINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">

@@ -5,16 +5,16 @@
 <mapper namespace="space.akko.springbootinit.mapper.PurchaseOrderDetailMapper">
 
     <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.domain.PurchaseOrderDetail">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="orderId" column="orderId" jdbcType="INTEGER"/>
-            <result property="productId" column="productId" jdbcType="INTEGER"/>
-            <result property="purchasePrice" column="purchasePrice" jdbcType="DECIMAL"/>
-            <result property="purchaseCount" column="purchaseCount" jdbcType="INTEGER"/>
-            <result property="purchaseTotal" column="purchaseTotal" jdbcType="DECIMAL"/>
-            <result property="userId" column="userId" jdbcType="BIGINT"/>
-            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
-            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderId" column="orderId" jdbcType="INTEGER"/>
+        <result property="productId" column="productId" jdbcType="INTEGER"/>
+        <result property="purchasePrice" column="purchasePrice" jdbcType="DECIMAL"/>
+        <result property="purchaseCount" column="purchaseCount" jdbcType="INTEGER"/>
+        <result property="purchaseTotal" column="purchaseTotal" jdbcType="DECIMAL"/>
+        <result property="userId" column="userId" jdbcType="BIGINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">

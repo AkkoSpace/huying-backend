@@ -5,14 +5,14 @@
 <mapper namespace="space.akko.springbootinit.mapper.BasicWarehouseMapper">
 
     <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.domain.BasicWarehouse">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="warehouseName" column="warehouseName" jdbcType="VARCHAR"/>
-            <result property="warehouseAddress" column="warehouseAddress" jdbcType="VARCHAR"/>
-            <result property="warehouseStatus" column="warehouseStatus" jdbcType="TINYINT"/>
-            <result property="userId" column="userId" jdbcType="BIGINT"/>
-            <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
-            <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="warehouseName" column="warehouseName" jdbcType="VARCHAR"/>
+        <result property="warehouseAddress" column="warehouseAddress" jdbcType="VARCHAR"/>
+        <result property="warehouseStatus" column="warehouseStatus" jdbcType="TINYINT"/>
+        <result property="userId" column="userId" jdbcType="BIGINT"/>
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
+        <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
