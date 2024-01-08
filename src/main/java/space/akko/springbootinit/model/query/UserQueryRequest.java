@@ -1,4 +1,4 @@
-package space.akko.springbootinit.model.dto.user;
+package space.akko.springbootinit.model.query;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,14 +17,6 @@ public class UserQueryRequest extends PageRequest implements Serializable {
      * id
      */
     private Long id;
-    /**
-     * 开放平台id
-     */
-    private String unionId;
-    /**
-     * 公众号openId
-     */
-    private String mpOpenId;
     /**
      * 用户昵称
      */

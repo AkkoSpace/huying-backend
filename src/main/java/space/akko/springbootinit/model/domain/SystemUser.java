@@ -1,4 +1,4 @@
-package space.akko.springbootinit.model.entity;
+package space.akko.springbootinit.model.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;

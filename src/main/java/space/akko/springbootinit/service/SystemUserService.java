@@ -2,8 +2,8 @@ package space.akko.springbootinit.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import space.akko.springbootinit.model.dto.user.UserQueryRequest;
-import space.akko.springbootinit.model.entity.SystemUser;
+import space.akko.springbootinit.model.query.UserQueryRequest;
+import space.akko.springbootinit.model.domain.SystemUser;
 import space.akko.springbootinit.model.vo.LoginUserVO;
 import space.akko.springbootinit.model.vo.UserVO;
 

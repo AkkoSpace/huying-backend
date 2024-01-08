@@ -1,4 +1,4 @@
-package space.akko.springbootinit.model.dto.user;
+package space.akko.springbootinit.model.dto;
 
 import lombok.Data;
 

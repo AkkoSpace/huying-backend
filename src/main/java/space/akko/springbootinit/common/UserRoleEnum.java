@@ -1,4 +1,4 @@
-package space.akko.springbootinit.model.enums;
+package space.akko.springbootinit.common;
 
 import org.apache.commons.lang3.ObjectUtils;
 

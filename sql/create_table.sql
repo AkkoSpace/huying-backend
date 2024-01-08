@@ -24,6 +24,7 @@ create table basic_product
     id            int auto_increment comment '自增主键'
         primary key,
     brandId       tinyint unsigned                              null comment '品牌 ID',
+    categoryId    tinyint unsigned                              null comment '分类 ID',
     productName   varchar(20)                                   not null comment '产品名称',
     barCode       varchar(20)                                   null comment '条形码',
     productSpec   varchar(20)                                   not null comment '产品规格',

@@ -11,8 +11,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import space.akko.springbootinit.annotation.AuthCheck;
 import space.akko.springbootinit.common.ErrorCode;
 import space.akko.springbootinit.exception.BusinessException;
-import space.akko.springbootinit.model.entity.SystemUser;
-import space.akko.springbootinit.model.enums.UserRoleEnum;
+import space.akko.springbootinit.model.domain.SystemUser;
+import space.akko.springbootinit.common.UserRoleEnum;
 import space.akko.springbootinit.service.SystemUserService;
 
 import javax.annotation.Resource;
