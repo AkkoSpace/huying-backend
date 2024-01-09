@@ -10,7 +10,8 @@ import space.akko.springbootinit.exception.BusinessException;
 import space.akko.springbootinit.exception.ThrowUtils;
 import space.akko.springbootinit.model.domain.BasicProduct;
 import space.akko.springbootinit.model.domain.SystemUser;
-import space.akko.springbootinit.model.dto.BasicProductSaveRequest;
+import space.akko.springbootinit.model.dto.BasicProductAddRequest;
+import space.akko.springbootinit.model.dto.BasicProductUpdateRequest;
 import space.akko.springbootinit.service.BasicProductService;
 import space.akko.springbootinit.service.SystemUserService;
 
@@ -38,16 +39,18 @@ public class BasicProductController {
     /**
      * 新增产品
      *
-     * @param
-     * @return
+     * @param basicProductAddRequest 产品信息
+     * @param request                请求
+     * @return 新增产品 ID
      */
     @PostMapping("/product")
-    public BaseResponse<Long> addProduct(@RequestBody BasicProductSaveRequest basicProductAddRequest, HttpServletRequest request) {
+    public BaseResponse<Long> addProduct(@RequestBody BasicProductAddRequest basicProductAddRequest, HttpServletRequest request) {
         if (basicProductAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         BasicProduct basicProduct = new BasicProduct();
-        basicProductService.validProducts(basicProduct, true);
+        BeanUtils.copyProperties(basicProductAddRequest, basicProduct);
+        basicProductService.validAddProduct(basicProductAddRequest);
         SystemUser loginUser = systemUserService.getLoginUser(request);
         basicProduct.setUserId(loginUser.getId());
         boolean result = basicProductService.save(basicProduct);
@@ -59,8 +62,8 @@ public class BasicProductController {
     /**
      * 删除产品
      *
-     * @param
-     * @return
+     * @param id 产品 ID
+     * @return 删除结果
      */
     @DeleteMapping("/product/{id}")
     public BaseResponse<String> deleteProduct(@PathVariable Integer id) {
@@ -78,24 +81,39 @@ public class BasicProductController {
      * @return
      */
     @PutMapping("/product")
-    public BaseResponse<String> updateProduct(@RequestBody BasicProductSaveRequest basicProductAddRequest) {
-        if (basicProductAddRequest == null) {
+    public BaseResponse<String> updateProduct(@RequestBody BasicProductUpdateRequest basicProductUpdateRequest, HttpServletRequest request) {
+        if (basicProductUpdateRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         BasicProduct basicProduct = new BasicProduct();
-        BeanUtils.copyProperties(basicProductAddRequest, basicProduct);
-        basicProductService.updateById(basicProduct);
-        return ResultUtils.success("修改产品成功");
+        BeanUtils.copyProperties(basicProductUpdateRequest, basicProduct);
+        basicProductService.validUpdateProduct(basicProductUpdateRequest);
+        SystemUser loginUser = systemUserService.getLoginUser(request);
+        basicProduct.setUserId(loginUser.getId());
+        boolean result = basicProductService.updateById(basicProduct);
+        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+        long productId = basicProduct.getId();
+        return ResultUtils.success("修改产品" + productId + "成功");
+    }
+
+    /**
+     * 查询产品列表
+     *
+     * @return 产品列表
+     */
+    @GetMapping("/product")
+    public BaseResponse<List<BasicProduct>> getProductList() {
+        return ResultUtils.success(basicProductService.list());
     }
 
     /**
      * 查询产品
      *
-     * @param
-     * @return
+     * @param id 产品 ID
+     * @return 产品
      */
     @GetMapping("/product/{id}")
-    public BaseResponse<BasicProduct> getProduct(@PathVariable Integer id) {
+    public BaseResponse<BasicProduct> getProductDetail(@PathVariable Integer id) {
         if (id == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -103,14 +121,4 @@ public class BasicProductController {
         return ResultUtils.success(basicProduct);
     }
 
-    /**
-     * 查询产品列表
-     *
-     * @param
-     * @return
-     */
-    @GetMapping("/product")
-    public BaseResponse<List<BasicProduct>> getProductList() {
-        return ResultUtils.success(basicProductService.list());
-    }
 }

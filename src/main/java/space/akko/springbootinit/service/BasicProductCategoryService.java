@@ -2,6 +2,8 @@ package space.akko.springbootinit.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import space.akko.springbootinit.model.domain.BasicProductCategory;
+import space.akko.springbootinit.model.dto.BasicProductCategoryAddRequest;
+import space.akko.springbootinit.model.dto.BasicProductCategoryUpdateRequest;
 
 /**
  * @author Administrator
@@ -10,4 +12,7 @@ import space.akko.springbootinit.model.domain.BasicProductCategory;
  */
 public interface BasicProductCategoryService extends IService<BasicProductCategory> {
 
+    void validAddProductCategory(BasicProductCategoryAddRequest basicProductCategoryAddRequest);
+
+    void validUpdateProductCategory(BasicProductCategoryUpdateRequest basicProductCategoryUpdateRequest);
 }

@@ -2,6 +2,8 @@ package space.akko.springbootinit.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import space.akko.springbootinit.model.domain.BasicProductBrand;
+import space.akko.springbootinit.model.dto.BasicProductBrandAddRequest;
+import space.akko.springbootinit.model.dto.BasicProductBrandUpdateRequest;
 
 /**
  * @author Administrator
@@ -10,4 +12,7 @@ import space.akko.springbootinit.model.domain.BasicProductBrand;
  */
 public interface BasicProductBrandService extends IService<BasicProductBrand> {
 
+    void validAddProductBrand(BasicProductBrandAddRequest basicProductBrandAddRequest);
+
+    void validUpdateProductBrand(BasicProductBrandUpdateRequest basicProductBrandUpdateRequest);
 }

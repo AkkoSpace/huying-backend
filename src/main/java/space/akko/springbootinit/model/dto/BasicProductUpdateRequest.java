@@ -1,26 +1,20 @@
-package space.akko.springbootinit.model.domain;
+package space.akko.springbootinit.model.dto;
 
-import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
- * 产品信息表
- *
- * @TableName basic_product
+ * 用户创建请求
  */
-@TableName(value = "basic_product")
 @Data
-public class BasicProduct implements Serializable {
-    @TableField(exist = false)
+public class BasicProductUpdateRequest implements Serializable {
+
     private static final long serialVersionUID = 1L;
     /**
      * 自增主键
      */
-    @TableId(type = IdType.AUTO)
     private Integer id;
     /**
      * 品牌 ID
@@ -54,21 +48,5 @@ public class BasicProduct implements Serializable {
      * 标准单价
      */
     private BigDecimal standardPrice;
-    /**
-     * 操作用户 ID
-     */
-    private Long userId;
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
-    /**
-     * 是否删除
-     */
-    @TableLogic
-    private Integer isDelete;
+
 }

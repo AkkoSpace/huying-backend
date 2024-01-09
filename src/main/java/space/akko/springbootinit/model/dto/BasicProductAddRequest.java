@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * 用户创建请求
  */
 @Data
-public class BasicProductSaveRequest implements Serializable {
+public class BasicProductAddRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
     /**
