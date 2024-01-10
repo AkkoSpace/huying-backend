@@ -28,7 +28,7 @@ public class BasicProductBrandServiceImpl extends ServiceImpl<BasicProductBrandM
         String brandName = basicProductBrandAddRequest.getBrandName();
 
         // 参数非空校验
-        if (brandName == null) {
+        if (brandName.isEmpty()) {
             throw new BusinessException(ErrorCode.PARAMS_IS_NULL, "参数不能为空");
         }
 
