@@ -2,6 +2,8 @@ package space.akko.springbootinit.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import space.akko.springbootinit.model.domain.BasicWarehouse;
+import space.akko.springbootinit.model.dto.BasicWarehouseAddRequest;
+import space.akko.springbootinit.model.dto.BasicWarehouseUpdateRequest;
 
 /**
  * @author Administrator
@@ -10,4 +12,7 @@ import space.akko.springbootinit.model.domain.BasicWarehouse;
  */
 public interface BasicWarehouseService extends IService<BasicWarehouse> {
 
+    void validAddWarehouse(BasicWarehouseAddRequest basicWarehouseAddRequest);
+
+    void validUpdateWarehouse(BasicWarehouseUpdateRequest basicWarehouseUpdateRequest);
 }
