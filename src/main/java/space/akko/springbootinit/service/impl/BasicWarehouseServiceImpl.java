@@ -49,7 +49,7 @@ public class BasicWarehouseServiceImpl extends ServiceImpl<BasicWarehouseMapper,
 
     @Override
     public void validUpdateWarehouse(BasicWarehouseUpdateRequest basicWarehouseUpdateRequest) {
-        if (basicWarehouseUpdateRequest == null){
+        if (basicWarehouseUpdateRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_IS_NULL);
         }
 

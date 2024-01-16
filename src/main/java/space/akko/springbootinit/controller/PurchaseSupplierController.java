@@ -18,7 +18,6 @@ import space.akko.springbootinit.service.SystemUserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -42,10 +41,10 @@ public class PurchaseSupplierController {
      * 新增供应商
      *
      * @param purchaseSupplierAddRequest 新增供应商请求
-     * @param request                  请求
+     * @param request                    请求
      * @return 新增供应商 ID
      */
-    @PostMapping("/warehouse")
+    @PostMapping("/supplier")
     public BaseResponse<Long> addWarehouse(@Validated @RequestBody PurchaseSupplierAddRequest purchaseSupplierAddRequest, HttpServletRequest request) {
         if (purchaseSupplierAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -66,7 +65,7 @@ public class PurchaseSupplierController {
      * @param id 供应商 ID
      * @return 删除结果
      */
-    @DeleteMapping("/warehouse/{id}")
+    @DeleteMapping("/supplier/{id}")
     public BaseResponse<String> deleteWarehouse(@PathVariable Integer id) {
         if (id == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -79,11 +78,11 @@ public class PurchaseSupplierController {
      * 修改供应商
      *
      * @param purchaseSupplierUpdateRequest 修改供应商请求
-     * @param request                     请求
+     * @param request                       请求
      * @return 修改结果
      */
-    @PutMapping("/warehouse")
-    public BaseResponse<String> updateWarehouse(@RequestBody PurchaseSupplierUpdateRequest purchaseSupplierUpdateRequest, HttpServletRequest request) {
+    @PutMapping("/supplier")
+    public BaseResponse<String> updateWarehouse(@Validated @RequestBody PurchaseSupplierUpdateRequest purchaseSupplierUpdateRequest, HttpServletRequest request) {
         if (purchaseSupplierUpdateRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -93,8 +92,8 @@ public class PurchaseSupplierController {
         purchaseSupplier.setUserId(loginUser.getId());
         boolean result = purchaseSupplierService.updateById(purchaseSupplier);
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
-        long warehouseId = purchaseSupplier.getId();
-        return ResultUtils.success("修改供应商" + warehouseId + "成功");
+        long supplierId = purchaseSupplier.getId();
+        return ResultUtils.success("修改供应商" + supplierId + "成功");
     }
 
     /**
@@ -102,7 +101,7 @@ public class PurchaseSupplierController {
      *
      * @return 供应商列表
      */
-    @GetMapping("/warehouse")
+    @GetMapping("/supplier")
     public BaseResponse<List<PurchaseSupplier>> getWarehouseList() {
         return ResultUtils.success(purchaseSupplierService.list());
     }
@@ -113,7 +112,7 @@ public class PurchaseSupplierController {
      * @param id 供应商 ID
      * @return 供应商详情
      */
-    @GetMapping("/warehouse/{id}")
+    @GetMapping("/supplier/{id}")
     public BaseResponse<PurchaseSupplier> getWarehouseDetail(@PathVariable Integer id) {
         if (id == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
