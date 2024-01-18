@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -16,7 +17,7 @@ public class PurchaseSupplierUpdateRequest implements Serializable {
     /**
      * 自增主键
      */
-    @NotBlank(message = "供应商 ID 不能为空")
+    @NotNull(message = "供应商 ID 不能为空")
     private Integer id;
     /**
      * 供应商名称
