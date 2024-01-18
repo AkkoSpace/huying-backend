@@ -75,6 +75,7 @@ create table basic_product_selling_price
     standardPrice decimal(10, 2)                                null comment '标准单价',
     sellingPrice  decimal(10, 2)                                null comment '销售单价',
     productProfit decimal(10, 2)                                null comment '产品利润',
+    priceLevel    tinyint(1) unsigned default 1                 null comment '价格等级：0-特价，1-一级，2-二级，3-三级',
     userId        bigint                                        not null comment '操作用户 ID',
     createTime    datetime            default CURRENT_TIMESTAMP not null comment '创建时间',
     updateTime    datetime            default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
