@@ -11,6 +11,7 @@ import space.akko.springbootinit.model.dto.BasicProductUpdateRequest;
 import space.akko.springbootinit.service.BasicProductService;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Administrator
@@ -96,6 +97,11 @@ public class BasicProductServiceImpl extends ServiceImpl<BasicProductMapper, Bas
         if (standardPrice.compareTo(purchasePrice) < 0) {
             throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE, "标准单价不能小于进货单价");
         }
+    }
+
+    @Override
+    public List<BasicProduct> searchProduct(String productName) {
+        return this.lambdaQuery().like(BasicProduct::getProductName, productName).list();
     }
 }
 

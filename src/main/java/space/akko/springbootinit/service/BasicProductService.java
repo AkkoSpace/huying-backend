@@ -5,6 +5,8 @@ import space.akko.springbootinit.model.domain.BasicProduct;
 import space.akko.springbootinit.model.dto.BasicProductAddRequest;
 import space.akko.springbootinit.model.dto.BasicProductUpdateRequest;
 
+import java.util.List;
+
 /**
  * @author Administrator
  * @description 针对表【basic_product(产品信息表)】的数据库操作Service
@@ -15,4 +17,6 @@ public interface BasicProductService extends IService<BasicProduct> {
     void validAddProduct(BasicProductAddRequest basicProductAddRequest);
 
     void validUpdateProduct(BasicProductUpdateRequest basicProductUpdateRequest);
+
+    List<BasicProduct> searchProduct(String productName);
 }

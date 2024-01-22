@@ -121,4 +121,18 @@ public class BasicProductController {
         return ResultUtils.success(basicProduct);
     }
 
+    /**
+     * 根据产品名称查询
+     *
+     * @param productName 产品名称
+     */
+    @GetMapping("/product/search")
+    public BaseResponse<List<BasicProduct>> searchProduct(@RequestParam String productName) {
+        if (productName == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        List<BasicProduct> basicProductList = basicProductService.searchProduct(productName);
+        return ResultUtils.success(basicProductList);
+    }
+
 }
