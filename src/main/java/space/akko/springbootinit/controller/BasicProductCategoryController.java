@@ -8,6 +8,7 @@ import space.akko.springbootinit.common.ErrorCode;
 import space.akko.springbootinit.common.ResultUtils;
 import space.akko.springbootinit.exception.BusinessException;
 import space.akko.springbootinit.exception.ThrowUtils;
+import space.akko.springbootinit.model.domain.BasicProduct;
 import space.akko.springbootinit.model.domain.BasicProductCategory;
 import space.akko.springbootinit.model.domain.SystemUser;
 import space.akko.springbootinit.model.dto.BasicProductCategoryAddRequest;
@@ -120,5 +121,19 @@ public class BasicProductCategoryController {
         }
         BasicProductCategory basicProductCategory = basicProductCategoryService.getById(id);
         return ResultUtils.success(basicProductCategory);
+    }
+
+    /**
+     * 根据产品属性或类型查询
+     *
+     * @param value 产品属性或类型
+     */
+    @GetMapping("/productCategory/search")
+    public BaseResponse<List<BasicProductCategory>> searchProductCategory(@RequestParam String value) {
+        if (value == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        List<BasicProductCategory> basicProductCategoryList = basicProductCategoryService.searchProductCategory(value);
+        return ResultUtils.success(basicProductCategoryList);
     }
 }

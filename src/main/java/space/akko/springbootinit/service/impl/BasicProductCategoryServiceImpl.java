@@ -10,6 +10,8 @@ import space.akko.springbootinit.model.dto.BasicProductCategoryAddRequest;
 import space.akko.springbootinit.model.dto.BasicProductCategoryUpdateRequest;
 import space.akko.springbootinit.service.BasicProductCategoryService;
 
+import java.util.List;
+
 /**
  * @author Administrator
  * @description 针对表【basic_product_category(产品分类表)】的数据库操作Service实现
@@ -58,6 +60,11 @@ public class BasicProductCategoryServiceImpl extends ServiceImpl<BasicProductCat
         if (productAttribute.length() > 10 || productType.length() > 10) {
             throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE);
         }
+    }
+
+    @Override
+    public List<BasicProductCategory> searchProductCategory(String value) {
+        return this.lambdaQuery().like(BasicProductCategory::getProductAttribute, value).or().like(BasicProductCategory::getProductType, value).list();
     }
 }
 
