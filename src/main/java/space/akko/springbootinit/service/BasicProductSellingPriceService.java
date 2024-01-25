@@ -2,6 +2,9 @@ package space.akko.springbootinit.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import space.akko.springbootinit.model.domain.BasicProductSellingPrice;
+import space.akko.springbootinit.model.vo.BasicProductSellingPriceVO;
+
+import java.util.List;
 
 /**
  * @author Administrator
@@ -10,4 +13,5 @@ import space.akko.springbootinit.model.domain.BasicProductSellingPrice;
  */
 public interface BasicProductSellingPriceService extends IService<BasicProductSellingPrice> {
 
+    List<BasicProductSellingPriceVO> listDetail();
 }

@@ -1,4 +1,4 @@
-package space.akko.springbootinit.model.domain;
+package space.akko.springbootinit.model.vo;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @TableName(value = "basic_product_selling_price")
 @Data
-public class BasicProductSellingPrice implements Serializable {
+public class BasicProductSellingPriceVO implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
     /**
@@ -23,9 +23,29 @@ public class BasicProductSellingPrice implements Serializable {
     @TableId(type = IdType.AUTO)
     private Integer id;
     /**
-     * 产品 ID
+     * 品牌 ID
      */
-    private Integer productId;
+    private Integer brandId;
+    /**
+     * 分类 ID
+     */
+    private Integer categoryId;
+    /**
+     * 产品名称
+     */
+    private String productName;
+    /**
+     * 条形码
+     */
+    private String barCode;
+    /**
+     * 产品规格
+     */
+    private String productSpec;
+    /**
+     * 产品单位
+     */
+    private String productUnit;
     /**
      * 进货单价
      */

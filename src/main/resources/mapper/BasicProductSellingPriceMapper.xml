@@ -20,7 +20,7 @@
     <sql id="Base_Column_List">
         id,productId,purchasePrice,
         standardPrice,sellingPrice,productProfit,
-        userId,createTime,updateTime,
-        isDelete
+        priceLevel,userId,createTime,
+        updateTime,isDelete
     </sql>
 </mapper>
