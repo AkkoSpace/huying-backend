@@ -7,8 +7,8 @@
     <resultMap id="BaseResultMap" type="space.akko.springbootinit.model.domain.BasicProductSellingPrice">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="productId" column="productId" jdbcType="INTEGER"/>
+        <result property="supplierId" column="supplierId" jdbcType="INTEGER"/>
         <result property="purchasePrice" column="purchasePrice" jdbcType="DECIMAL"/>
-        <result property="standardPrice" column="standardPrice" jdbcType="DECIMAL"/>
         <result property="sellingPrice" column="sellingPrice" jdbcType="DECIMAL"/>
         <result property="productProfit" column="productProfit" jdbcType="DECIMAL"/>
         <result property="userId" column="userId" jdbcType="BIGINT"/>
@@ -18,8 +18,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,productId,purchasePrice,
-        standardPrice,sellingPrice,productProfit,
+        id,productId,supplierId,purchasePrice,
+        sellingPrice,productProfit,
         priceLevel,userId,createTime,
         updateTime,isDelete
     </sql>

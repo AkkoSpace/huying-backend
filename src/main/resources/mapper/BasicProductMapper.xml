@@ -12,8 +12,6 @@
         <result property="barCode" column="barCode" jdbcType="VARCHAR"/>
         <result property="productSpec" column="productSpec" jdbcType="VARCHAR"/>
         <result property="productUnit" column="productUnit" jdbcType="CHAR"/>
-        <result property="purchasePrice" column="purchasePrice" jdbcType="DECIMAL"/>
-        <result property="standardPrice" column="standardPrice" jdbcType="DECIMAL"/>
         <result property="userId" column="userId" jdbcType="BIGINT"/>
         <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
@@ -23,7 +21,7 @@
     <sql id="Base_Column_List">
         id,brandId,categoryId,
         productName,barCode,productSpec,
-        productUnit,purchasePrice,standardPrice,
+        productUnit,
         userId,createTime,updateTime,
         isDelete
     </sql>

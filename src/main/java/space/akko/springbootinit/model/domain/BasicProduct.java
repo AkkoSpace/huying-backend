@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -46,14 +45,6 @@ public class BasicProduct implements Serializable {
      * 产品单位
      */
     private String productUnit;
-    /**
-     * 进货单价
-     */
-    private BigDecimal purchasePrice;
-    /**
-     * 标准单价
-     */
-    private BigDecimal standardPrice;
     /**
      * 操作用户 ID
      */

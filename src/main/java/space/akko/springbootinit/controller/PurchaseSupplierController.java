@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * 用户接口
+ * 供应商接口
  *
  * @author Akko
  */
@@ -60,21 +60,6 @@ public class PurchaseSupplierController {
     }
 
     /**
-     * 删除供应商
-     *
-     * @param id 供应商 ID
-     * @return 删除结果
-     */
-    @DeleteMapping("/supplier/{id}")
-    public BaseResponse<String> deleteWarehouse(@PathVariable Integer id) {
-        if (id == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-        }
-        purchaseSupplierService.removeById(id);
-        return ResultUtils.success("删除供应商成功");
-    }
-
-    /**
      * 修改供应商
      *
      * @param purchaseSupplierUpdateRequest 修改供应商请求
@@ -94,6 +79,22 @@ public class PurchaseSupplierController {
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         long supplierId = purchaseSupplier.getId();
         return ResultUtils.success("修改供应商" + supplierId + "成功");
+    }
+
+
+    /**
+     * 删除供应商
+     *
+     * @param id 供应商 ID
+     * @return 删除结果
+     */
+    @DeleteMapping("/supplier/{id}")
+    public BaseResponse<String> deleteWarehouse(@PathVariable Integer id) {
+        if (id == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        purchaseSupplierService.removeById(id);
+        return ResultUtils.success("删除供应商成功");
     }
 
     /**

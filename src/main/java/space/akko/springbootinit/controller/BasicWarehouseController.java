@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * 用户接口
+ * 仓库接口
  *
  * @author Akko
  */
@@ -60,21 +60,6 @@ public class BasicWarehouseController {
     }
 
     /**
-     * 删除仓库
-     *
-     * @param id 仓库 ID
-     * @return 删除结果
-     */
-    @DeleteMapping("/warehouse/{id}")
-    public BaseResponse<String> deleteWarehouse(@PathVariable Integer id) {
-        if (id == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-        }
-        basicWarehouseService.removeById(id);
-        return ResultUtils.success("删除仓库成功");
-    }
-
-    /**
      * 修改仓库
      *
      * @param basicWarehouseUpdateRequest 修改仓库请求
@@ -95,6 +80,21 @@ public class BasicWarehouseController {
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         long warehouseId = basicWarehouse.getId();
         return ResultUtils.success("修改仓库" + warehouseId + "成功");
+    }
+
+    /**
+     * 删除仓库
+     *
+     * @param id 仓库 ID
+     * @return 删除结果
+     */
+    @DeleteMapping("/warehouse/{id}")
+    public BaseResponse<String> deleteWarehouse(@PathVariable Integer id) {
+        if (id == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        basicWarehouseService.removeById(id);
+        return ResultUtils.success("删除仓库成功");
     }
 
     /**

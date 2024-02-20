@@ -27,13 +27,13 @@ public class BasicProductSellingPrice implements Serializable {
      */
     private Integer productId;
     /**
+     * 供应商 ID
+     */
+    private Integer supplierId;
+    /**
      * 进货单价
      */
     private BigDecimal purchasePrice;
-    /**
-     * 标准单价
-     */
-    private BigDecimal standardPrice;
     /**
      * 销售单价
      */

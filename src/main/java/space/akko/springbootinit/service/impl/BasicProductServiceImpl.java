@@ -34,15 +34,13 @@ public class BasicProductServiceImpl extends ServiceImpl<BasicProductMapper, Bas
         String productCode = basicProductSaveRequest.getBarCode();
         String productSpec = basicProductSaveRequest.getProductSpec();
         String productUnit = basicProductSaveRequest.getProductUnit();
-        BigDecimal purchasePrice = basicProductSaveRequest.getPurchasePrice();
-        BigDecimal standardPrice = basicProductSaveRequest.getStandardPrice();
 
         // 参数非空校验
-        if (brandId == null || categoryId == null || productName == null || productUnit == null || productSpec == null || purchasePrice == null || standardPrice == null) {
+        if (brandId == null || categoryId == null || productName == null || productUnit == null || productSpec == null ) {
             throw new BusinessException(ErrorCode.PARAMS_IS_NULL, "参数不能为空");
         }
         // 参数范围校验
-        if (brandId < 0 || categoryId < 0 || productName.isEmpty() || productUnit.isEmpty() || productSpec.isEmpty() || purchasePrice.compareTo(BigDecimal.ZERO) < 0 || standardPrice.compareTo(BigDecimal.ZERO) < 0) {
+        if (brandId < 0 || categoryId < 0 || productName.isEmpty() || productUnit.isEmpty() || productSpec.isEmpty() ) {
             throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE, "参数范围不正确");
         }
         // productCode 只能是数字或英文
@@ -53,11 +51,6 @@ public class BasicProductServiceImpl extends ServiceImpl<BasicProductMapper, Bas
         if (productUnit.length() > 1) {
             throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE, "产品单位长度不能大于1");
         }
-        // standardPrice 需要大于 purchasePrice
-        if (standardPrice.compareTo(purchasePrice) < 0) {
-            throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE, "标准单价不能小于进货单价");
-        }
-
 
     }
 
@@ -74,15 +67,13 @@ public class BasicProductServiceImpl extends ServiceImpl<BasicProductMapper, Bas
         String productCode = basicProductUpdateRequest.getBarCode();
         String productSpec = basicProductUpdateRequest.getProductSpec();
         String productUnit = basicProductUpdateRequest.getProductUnit();
-        BigDecimal purchasePrice = basicProductUpdateRequest.getPurchasePrice();
-        BigDecimal standardPrice = basicProductUpdateRequest.getStandardPrice();
 
         // 参数非空校验
-        if (id == null || brandId == null || categoryId == null || productName == null || productUnit == null || productSpec == null || purchasePrice == null || standardPrice == null) {
+        if (id == null || brandId == null || categoryId == null || productName == null || productUnit == null || productSpec == null ) {
             throw new BusinessException(ErrorCode.PARAMS_IS_NULL, "参数不能为空");
         }
         // 参数范围校验
-        if (id < 0 || brandId < 0 || categoryId < 0 || productName.isEmpty() || productUnit.isEmpty() || productSpec.isEmpty() || purchasePrice.compareTo(BigDecimal.ZERO) < 0 || standardPrice.compareTo(BigDecimal.ZERO) < 0) {
+        if (id < 0 || brandId < 0 || categoryId < 0 || productName.isEmpty() || productUnit.isEmpty() || productSpec.isEmpty() ) {
             throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE, "参数范围不正确");
         }
         // productCode 只能是数字或英文
@@ -92,10 +83,6 @@ public class BasicProductServiceImpl extends ServiceImpl<BasicProductMapper, Bas
         // productUnit 单位长度不能大于1
         if (productUnit.length() > 1) {
             throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE, "产品单位长度不能大于1");
-        }
-        // standardPrice 需要大于 purchasePrice
-        if (standardPrice.compareTo(purchasePrice) < 0) {
-            throw new BusinessException(ErrorCode.PARAMS_OUT_OF_RANGE, "标准单价不能小于进货单价");
         }
     }
 

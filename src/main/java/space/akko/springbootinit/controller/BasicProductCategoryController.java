@@ -8,7 +8,6 @@ import space.akko.springbootinit.common.ErrorCode;
 import space.akko.springbootinit.common.ResultUtils;
 import space.akko.springbootinit.exception.BusinessException;
 import space.akko.springbootinit.exception.ThrowUtils;
-import space.akko.springbootinit.model.domain.BasicProduct;
 import space.akko.springbootinit.model.domain.BasicProductCategory;
 import space.akko.springbootinit.model.domain.SystemUser;
 import space.akko.springbootinit.model.dto.BasicProductCategoryAddRequest;

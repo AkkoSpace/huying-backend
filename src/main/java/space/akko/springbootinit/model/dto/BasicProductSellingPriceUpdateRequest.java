@@ -25,15 +25,15 @@ public class BasicProductSellingPriceUpdateRequest implements Serializable {
     @NotBlank(message = "产品 ID不能为空")
     private Integer productId;
     /**
+     * 供应商 ID
+     */
+    @NotBlank(message = "供应商 ID不能为空")
+    private Integer supplierId;
+    /**
      * 进货单价
      */
     @NotBlank(message = "进货单价不能为空")
     private BigDecimal purchasePrice;
-    /**
-     * 标准单价
-     */
-    @NotBlank(message = "标准单价不能为空")
-    private BigDecimal standardPrice;
     /**
      * 销售单价
      */

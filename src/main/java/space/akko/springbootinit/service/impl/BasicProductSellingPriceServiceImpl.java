@@ -45,7 +45,7 @@ public class BasicProductSellingPriceServiceImpl extends ServiceImpl<BasicProduc
         return sellingPriceList.stream().map(sellingPrice -> {
             BasicProduct product = productMap.get(sellingPrice.getProductId());
             if (product == null) {
-                throw new BusinessException(ErrorCode.PARAMS_ERROR,"找不到产品ID: " + sellingPrice.getProductId());
+                throw new BusinessException(ErrorCode.PARAMS_ERROR, "找不到产品ID: " + sellingPrice.getProductId());
             }
 
             BasicProductSellingPriceVO vo = new BasicProductSellingPriceVO();

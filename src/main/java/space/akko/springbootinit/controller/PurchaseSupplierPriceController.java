@@ -21,15 +21,15 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * 产品价格接口
+ * 供应商价格接口
  *
  * @author Akko
  */
 @CrossOrigin(origins = {"http://localhost:5173", "https://hy.akko.space"}, maxAge = 3600)
 @RestController
-@RequestMapping("/basic/product")
+@RequestMapping("/purchase/supplier")
 @Slf4j
-public class BasicProductSellingPriceController {
+public class PurchaseSupplierPriceController {
 
     @Resource
     private SystemUserService systemUserService;
@@ -38,23 +38,23 @@ public class BasicProductSellingPriceController {
     private BasicProductSellingPriceService basicProductSellingPriceService;
 
     /**
-     * 查询产品价格列表
+     * 查询供应商价格列表
      *
-     * @return 产品价格列表
+     * @return 供应商价格列表
      */
-    @GetMapping("/sellingPrice")
+    @GetMapping("/price")
     public BaseResponse<List<BasicProductSellingPriceVO>> getProductList() {
         return ResultUtils.success(basicProductSellingPriceService.listDetail());
     }
 
     /**
-     * 新增产品价格
+     * 新增供应商价格
      *
-     * @param basicProductSellingPriceAddRequest 产品信息
+     * @param basicProductSellingPriceAddRequest 供应商信息
      * @param request                            请求
-     * @return 新增产品 ID
+     * @return 新增供应商价格 ID
      */
-    @PostMapping("/sellingPrice")
+    @PostMapping("/price")
     public BaseResponse<Long> addProduct(@RequestBody BasicProductSellingPriceAddRequest basicProductSellingPriceAddRequest, HttpServletRequest request) {
         if (basicProductSellingPriceAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -75,7 +75,7 @@ public class BasicProductSellingPriceController {
      * @param basicProductSellingPriceUpdateRequest 产品信息
      * @return 修改结果
      */
-    @PutMapping("/sellingPrice")
+    @PutMapping("/price")
     public BaseResponse<String> updateProduct(@RequestBody BasicProductSellingPriceUpdateRequest basicProductSellingPriceUpdateRequest, HttpServletRequest request) {
         if (basicProductSellingPriceUpdateRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -96,7 +96,7 @@ public class BasicProductSellingPriceController {
      * @param id 产品 ID
      * @return 删除结果
      */
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping("/price/{id}")
     public BaseResponse<String> deleteProduct(@PathVariable Integer id) {
         if (id == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);

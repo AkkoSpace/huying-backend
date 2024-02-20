@@ -3,7 +3,6 @@ package space.akko.springbootinit.model.dto;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * 用户创建请求
@@ -36,13 +35,5 @@ public class BasicProductAddRequest implements Serializable {
      * 产品单位
      */
     private String productUnit;
-    /**
-     * 进货单价
-     */
-    private BigDecimal purchasePrice;
-    /**
-     * 标准单价
-     */
-    private BigDecimal standardPrice;
 
 }
